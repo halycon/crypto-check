@@ -1,2 +1,14 @@
 server:
   port: ${SERVER_PORT:8080}
+
+spring:
+  profiles:
+    active: prod
+  thymeleaf:
+#    check-template-location: true
+    suffix: .html
+    mode: LEGACYHTML5
+    cache: false
+    encoding: UTF-8
+  template:
+    cache: false

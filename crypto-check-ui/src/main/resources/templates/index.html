@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="/fragments/theme :: head" />
+
+<body class="bg-dark">
+
+    <div class="container" th:include="fragments/theme :: menu"/>
+
+    <div class="container">
+        <div class="jumbotron">
+            <div class="container">
+                <h1 class="display-3">Mutluluğu getiren adam</h1>
+                <p>Size mutluluğu getiricem !</p>
+            </div>
+        </div>
+    </div>
+
+    <div th:include="/fragments/theme :: scripts"/>
+
+</body>
+</html>
