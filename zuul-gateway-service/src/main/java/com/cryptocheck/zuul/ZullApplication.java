@@ -2,11 +2,13 @@ package com.cryptocheck.zuul;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
 @SpringBootApplication
-public class ZullApplication {
+@EnableZuulProxy
+public class CryptoCheckZullApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ZullApplication.class, args);
+		SpringApplication.run(CryptoCheckZullApplication.class, args);
 	}
 }

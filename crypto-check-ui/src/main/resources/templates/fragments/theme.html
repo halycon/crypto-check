@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head  th:fragment="head">
+    <META NAME="robots" CONTENT="noindex,nofollow" />
+    <meta charset="UTF-8">
+    <title>Cyrpto Check</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.1.1/css/bootstrap.min.css" />
+<!--     <link rel="stylesheet" type="text/css" href="/webjars/jquery-ui/1.12.1/jquery-ui.min.css" /> -->
+
+    <style>
+        body {
+            padding-top: 3.5rem;
+            padding-bottom: 1.5rem;
+        }
+        .container{
+            padding-bottom: 1.5rem;
+        }
+    </style>
+
+</head>
+<body class="bg-dark">
+
+    <div class="container" th:fragment="menu">
+        <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+            <a class="navbar-brand" th:href="@{/}">Crypto Check</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarsExample09">
+                <ul class="navbar-nav mr-auto">
+<!--                     <li class="nav-item" th:classappend="${foodPageActive}"> -->
+<!--                         <a class="nav-link" th:href="@{/admin/food/list}">Yemekler</a> -->
+<!--                     </li> -->
+<!--                     <li class="nav-item" th:classappend="${ingredientPageActive}"> -->
+<!--                         <a class="nav-link" th:href="@{/admin/ingredient/list}">Malzemeler</a> -->
+<!--                     </li> -->
+<!-- 					<li class="nav-item" th:classappend="${warningPageActive}"> -->
+<!--                         <a class="nav-link" th:href="@{/admin/warning/list}">Uyarılar</a> -->
+<!--                     </li> -->
+<!--                     <li class="nav-item" th:classappend="${nutrientPageActive}"> -->
+<!--                         <a class="nav-link" th:href="@{/admin/nutrient/list}">Bileşenler</a> -->
+<!--                     </li> -->
+<!--                     <li class="nav-item" th:classappend="${dietAndHealtPageActive}"> -->
+<!--                         <a class="nav-link" th:href="@{/admin/dietAndHealt/list}" >Dietler ve Sağlık durumları</a> -->
+<!--                     </li> -->
+                </ul>
+<!--                 <a th:href="@{/logout}" class="btn btn-outline-info my-2 my-sm-0">Çıkış</a> -->
+            </div>
+        </nav>
+    </div>
+
+    <div class="container">
+
+    </div>
+
+
+    <div th:fragment="scripts">
+        <script src="/webjars/jquery/3.2.1/jquery.min.js"></script>
+        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>-->
+        <script src="/webjars/popper.js"></script>
+        <script src="/webjars/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<!--         <script src="/webjars/jquery-ui/1.12.1/jquery-ui.min.js"></script> -->
+    </div>
+
+</body>
+</html>

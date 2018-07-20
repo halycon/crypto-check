@@ -1,0 +1,10 @@
+server:
+  port: ${SERVER_PORT:9020}
+
+spring:
+  application:
+    name: ethereum-services
+
+#eureka:
+#  client:
+#    service-url: http://${EUREKA_HOST:localhost}:${EUREKA_PORT:8761}/eureka

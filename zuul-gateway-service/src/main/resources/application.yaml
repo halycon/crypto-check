@@ -1,0 +1,26 @@
+server:
+  port: ${SERVER_PORT:8090}
+
+spring:
+  application:
+    name: gateway-zuul
+
+zuul:
+  prefix: /api
+  routes:
+    serv1:
+      path: /btc/**
+      serviceId: bitcoin-service
+    serv2:
+      path: /eth/**
+      serviceId: ethereum-services
+    serv3:
+      path: /neo/**
+      serviceId: neo-services
+
+ribbon:
+  eager-load:
+    enabled: true
+#eureka:
+#  client:
+#    register-with-eureka: false
