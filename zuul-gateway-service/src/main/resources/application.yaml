@@ -1,0 +1,23 @@
+server:
+  port: ${SERVER_PORT:8090}
+
+spring:
+  application:
+    name: gateway-zuul
+
+#zuul:
+#  prefix: /api
+#  routes:
+#    serv1:
+#      path: /s1/**
+#      serviceId: service1
+#    serv2:
+#      path: /s2/**
+#      serviceId: service2
+
+ribbon:
+  eager-load:
+    enabled: true
+eureka:
+  client:
+    register-with-eureka: false
