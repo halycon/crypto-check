@@ -1,12 +1,12 @@
-package com.cryptocheck.common;
+package com.cryptocheck.microservices.eth;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CryptoCheckCommonApplication {
+public class CryptoCheckServiceEthApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CryptoCheckCommonApplication.class, args);
+		SpringApplication.run(CryptoCheckServiceEthApplication.class, args);
 	}
 }

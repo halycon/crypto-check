@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CryptoCheckZullApplication {
+public class ZullApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CryptoCheckZullApplication.class, args);
+		SpringApplication.run(ZullApplication.class, args);
 	}
 }
