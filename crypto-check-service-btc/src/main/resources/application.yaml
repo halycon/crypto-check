@@ -7,4 +7,4 @@ spring:
 
 #eureka:
 #  client:
-#    service-url: http://${EUREKA_HOST:localhost}:${EUREKA_PORT:8761}/eureka
+#    services-url: http://${EUREKA_HOST:localhost}:${EUREKA_PORT:8761}/eureka
