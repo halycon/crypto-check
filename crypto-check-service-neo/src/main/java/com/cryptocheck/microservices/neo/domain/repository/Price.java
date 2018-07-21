@@ -74,6 +74,7 @@ public class Price implements Serializable {
     }
 
     public void setPriceBTC(BigDecimal priceBTC) {
+        priceBTC = priceBTC.setScale(10,BigDecimal.ROUND_HALF_UP);
         this.priceBTC = priceBTC;
     }
 
