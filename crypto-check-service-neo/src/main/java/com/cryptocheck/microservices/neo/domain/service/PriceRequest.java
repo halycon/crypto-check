@@ -4,13 +4,13 @@ import java.io.Serializable;
 
 public class PriceRequest implements Serializable {
     private static final long serialVersionUID = -496620387588837360L;
-    private SAMCriteria SAMCriteria;
+    private SMACriteria smaCriteria;
 
-    public SAMCriteria getSAMCriteria() {
-        return SAMCriteria;
+    public SMACriteria getSmaCriteria() {
+        return smaCriteria;
     }
 
-    public void setSAMCriteria(SAMCriteria SAMCriteria) {
-        this.SAMCriteria = SAMCriteria;
+    public void setSmaCriteria(SMACriteria smaCriteria) {
+        this.smaCriteria = smaCriteria;
     }
 }
