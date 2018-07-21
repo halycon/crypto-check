@@ -10,8 +10,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.Tuple;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 @Service("NeoPriceService")
@@ -24,7 +28,7 @@ public class NeoPriceService implements IPriceService<PriceResponse, PriceReques
 
     @Override
     public CompletableFuture<PriceResponse> fetchPrice(PriceRequest request) {
-        if (request != null && request.getSAMCriteria() != null) {
+        if (request != null && request.getSmaCriteria() != null) {
 
             CompletableFuture<PriceResponse> price = CompletableFuture.supplyAsync(() ->
             {
@@ -32,7 +36,7 @@ public class NeoPriceService implements IPriceService<PriceResponse, PriceReques
                 return new PriceResponse(repositoryPrice.getPriceUSD(),repositoryPrice.getPriceBTC(),true);
             });
             CompletableFuture<PriceResponse> priceSMA = CompletableFuture.supplyAsync(() ->
-                    calculateSMA(request.getSAMCriteria().getPeriod(), request.getSAMCriteria().getTimeFrame()));
+                    calculateSMA(request.getSmaCriteria().getPeriod(), request.getSmaCriteria().getTimeFrame()));
             return price.thenCombineAsync(priceSMA, (s, s2) ->
                     new PriceResponse(s.getPriceUSD(), s.getPriceBTC(), s2.getSmaPrice(),true));
 
@@ -40,17 +44,42 @@ public class NeoPriceService implements IPriceService<PriceResponse, PriceReques
 
             return CompletableFuture.supplyAsync(() -> {
                 Price repositoryPrice = h2Repository.findTopByOrderByIdDesc();
-                logger.info("repository price :: {}",repositoryPrice.toString());
                 return new PriceResponse(repositoryPrice.getPriceUSD(),repositoryPrice.getPriceBTC(),true);
             });
     }
 
-    private PriceResponse calculateSMA(int period, int timeFrime) {
-
-
+    private PriceResponse calculateSMA(int period, int timeFrame) {
+        Date now = new Date();
+        Date timeFaredDate = calculateTimeFramedDate(timeFrame,now);
+        List<Tuple> priceList = h2Repository.findDataForSMACalculation(timeFaredDate,now);
         PriceResponse priceResponse = new PriceResponse();
-        priceResponse.setSmaPrice(BigDecimal.valueOf(0));
+        priceResponse.setSmaPrice(calculateSMAPrice(priceList,period,timeFrame));
         return priceResponse;
+    }
+
+    private Date calculateTimeFramedDate(int timeFrame, Date now){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(now);
+        cal.add(Calendar.MINUTE, -Math.abs(timeFrame));
+        return cal.getTime();
+    }
+
+    private BigDecimal calculateSMAPrice(List<Tuple> priceList,int period, int timeFrame){
+
+        if(priceList==null)
+            return BigDecimal.valueOf(0);
+        else{
+            BigDecimal sum = BigDecimal.valueOf(0);
+
+            int cntr = 0;
+
+            for(int i = 0 ; i < priceList.size() ; i=i+period){
+                sum = sum.add((BigDecimal) priceList.get(i).get(3));
+                cntr++;
+            }
+            sum = sum.divide(BigDecimal.valueOf(cntr),RoundingMode.HALF_UP);
+            return sum;
+        }
     }
 
 

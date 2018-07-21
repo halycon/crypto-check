@@ -2,7 +2,7 @@ package com.cryptocheck.microservices.neo.domain.service;
 
 import java.io.Serializable;
 
-public class SAMCriteria implements Serializable {
+public class SMACriteria implements Serializable {
     private static final long serialVersionUID = -6016468693221822352L;
     private int period;
     private int timeFrame;
