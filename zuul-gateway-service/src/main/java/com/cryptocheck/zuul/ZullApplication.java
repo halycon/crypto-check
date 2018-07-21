@@ -6,9 +6,9 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
 @SpringBootApplication
 @EnableZuulProxy
-public class CryptoCheckZullApplication {
+public class ZullApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CryptoCheckZullApplication.class, args);
+		SpringApplication.run(ZullApplication.class, args);
 	}
 }
