@@ -7,15 +7,6 @@ public class SMACriteria implements Serializable {
     private int period;
     private int timeFrame;
 
-    public SMACriteria(){
-
-    }
-
-    public SMACriteria(int period, int timeFrame){
-        this.period = period;
-        this.timeFrame = timeFrame;
-    }
-
     public int getPeriod() {
         return period;
     }
