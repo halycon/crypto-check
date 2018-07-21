@@ -22,7 +22,7 @@ public class NeoServiceController {
     @Resource(name="NeoPriceService")
     private IPriceService<PriceResponse,PriceRequest> priceService;
 
-    @PostMapping(value = "/getNeoPrice", consumes = "application/json", produces = "application/json")
+    @PostMapping("/getNeoPrice")
     public CompletableFuture<PriceResponse> getNeoPrice(@RequestBody PriceRequest request) {
         return priceService.fetchPrice(request);
     }
