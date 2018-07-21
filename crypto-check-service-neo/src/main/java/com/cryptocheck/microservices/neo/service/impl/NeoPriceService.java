@@ -35,8 +35,10 @@ public class NeoPriceService implements IPriceService<PriceResponse, PriceReques
                 Price repositoryPrice = h2Repository.findTopByOrderByIdDesc();
                 return new PriceResponse(repositoryPrice.getPriceUSD(),repositoryPrice.getPriceBTC(),true);
             });
+
             CompletableFuture<PriceResponse> priceSMA = CompletableFuture.supplyAsync(() ->
                     calculateSMA(request.getSmaCriteria().getPeriod(), request.getSmaCriteria().getTimeFrame()));
+
             return price.thenCombineAsync(priceSMA, (s, s2) ->
                     new PriceResponse(s.getPriceUSD(), s.getPriceBTC(), s2.getSmaPrice(),true));
 
@@ -53,7 +55,7 @@ public class NeoPriceService implements IPriceService<PriceResponse, PriceReques
         Date timeFaredDate = calculateTimeFramedDate(timeFrame,now);
         List<Tuple> priceList = h2Repository.findDataForSMACalculation(timeFaredDate,now);
         PriceResponse priceResponse = new PriceResponse();
-        priceResponse.setSmaPrice(calculateSMAPrice(priceList,period,timeFrame));
+        priceResponse.setSmaPrice(calculateSMAPrice(priceList,period));
         return priceResponse;
     }
 
@@ -64,7 +66,7 @@ public class NeoPriceService implements IPriceService<PriceResponse, PriceReques
         return cal.getTime();
     }
 
-    private BigDecimal calculateSMAPrice(List<Tuple> priceList,int period, int timeFrame){
+    private BigDecimal calculateSMAPrice(List<Tuple> priceList, int period){
 
         if(priceList==null)
             return BigDecimal.valueOf(0);
