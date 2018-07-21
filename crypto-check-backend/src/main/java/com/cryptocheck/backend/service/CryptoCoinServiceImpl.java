@@ -1,7 +1,7 @@
-package com.cryptocheck.backend.services;
+package com.cryptocheck.backend.service;
 
 import com.cryptocheck.backend.adaptor.Microservices;
-import com.cryptocheck.backend.domains.Coin;
+import com.cryptocheck.backend.domain.Coin;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

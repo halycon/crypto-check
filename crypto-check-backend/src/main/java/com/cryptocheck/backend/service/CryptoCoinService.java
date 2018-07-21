@@ -1,6 +1,6 @@
-package com.cryptocheck.backend.services;
+package com.cryptocheck.backend.service;
 
-import com.cryptocheck.backend.domains.Coin;
+import com.cryptocheck.backend.domain.Coin;
 import reactor.core.publisher.Flux;
 
 public interface CryptoCoinService {

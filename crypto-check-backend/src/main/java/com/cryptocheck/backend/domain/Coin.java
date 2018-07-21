@@ -1,4 +1,4 @@
-package com.cryptocheck.backend.domains;
+package com.cryptocheck.backend.domain;
 
 import lombok.Data;
 

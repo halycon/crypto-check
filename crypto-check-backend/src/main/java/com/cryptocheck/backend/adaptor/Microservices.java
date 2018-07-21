@@ -1,13 +1,10 @@
 package com.cryptocheck.backend.adaptor;
 
-import com.cryptocheck.backend.domains.Coin;
+import com.cryptocheck.backend.domain.Coin;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import reactor.core.publisher.Mono;
-
-import java.util.List;
 
 @Component
 @FeignClient("gateway-zuul")
