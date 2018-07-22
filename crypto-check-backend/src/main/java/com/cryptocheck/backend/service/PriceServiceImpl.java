@@ -21,9 +21,10 @@ public class PriceServiceImpl implements PriceService {
 
 //        Mono<Coin> btc = Mono.just(microservices.getBitcoin());
 //        Mono<Coin> eth = Mono.just(microservices.getEthereum());
+
         Mono<PriceResponse> neo = Mono.just(microservices.getNeoPrice(request));
 
-        Flux<PriceResponse> response = Flux.concat(neo);
+        Flux<PriceResponse> response = Flux.concat(neo,neo);
 
         return response;
     }

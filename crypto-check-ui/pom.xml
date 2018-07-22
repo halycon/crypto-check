@@ -22,6 +22,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+		<spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
 	</properties>
 
 	<dependencies>
@@ -37,6 +38,30 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webflux</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
+
+		<!--<dependency>-->
+			<!--<groupId>io.github.reactivefeign</groupId>-->
+			<!--<artifactId>feign-reactive-core</artifactId>-->
+			<!--&lt;!&ndash;<version>${project.version}</version>&ndash;&gt;-->
+		<!--</dependency>-->
+		<!--<dependency>-->
+			<!--<groupId>io.github.reactivefeign</groupId>-->
+			<!--<artifactId>feign-reactive-cloud</artifactId>-->
+			<!--&lt;!&ndash;<version>${project.version}</version>&ndash;&gt;-->
+		<!--</dependency>-->
+		<!--<dependency>-->
+			<!--<groupId>io.github.openfeign</groupId>-->
+			<!--<artifactId>feign-core</artifactId>-->
+			<!--&lt;!&ndash;<version>${feign.version}</version>&ndash;&gt;-->
+		<!--</dependency>-->
 
 		<dependency>
 			<groupId>org.webjars</groupId>
@@ -71,6 +96,18 @@
 		</dependency>
 
 	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<build>
 		<plugins>

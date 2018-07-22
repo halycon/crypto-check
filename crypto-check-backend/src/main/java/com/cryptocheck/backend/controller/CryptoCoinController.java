@@ -1,4 +1,4 @@
-package com.cryptocheck.backend.controllers;
+package com.cryptocheck.backend.controller;
 
 import com.cryptocheck.backend.domain.service.PriceRequest;
 import com.cryptocheck.backend.domain.service.PriceResponse;
@@ -6,6 +6,8 @@ import com.cryptocheck.backend.domain.service.SMACriteria;
 import com.cryptocheck.backend.service.PriceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 
@@ -16,14 +18,9 @@ public class CryptoCoinController {
     private PriceService cryptoCoinService;
 
 
-    @GetMapping(value= "getPrices")
-    public Flux<PriceResponse> getPrices(){
-//        @RequestBody PriceRequest request
-        PriceRequest request = new PriceRequest();
-        SMACriteria a = new SMACriteria();
-        a.setPeriod(1);
-        a.setTimeFrame(2);
-        request.setSmaCriteria(a);
+    @PostMapping(value= "getPrices")
+    public Flux<PriceResponse> getPrices(@RequestBody PriceRequest request){
+
         return cryptoCoinService.getPrices(request);
     }
 

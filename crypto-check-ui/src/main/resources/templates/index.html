@@ -8,14 +8,37 @@
 
     <div class="container" th:include="fragments/theme :: menu"/>
 
-    <div class="container">
-        <div class="jumbotron">
-            <div class="container">
-                <h1 class="display-3">Mutluluğu getiren adam</h1>
-                <p>Size mutluluğu getiricem !</p>
-            </div>
+    <div class="container rounded">
+
+        <div class="table-responsive ">
+            <table id="datatable" class="table bg-light table-striped table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">USD</th>
+                    <th scope="col">BTC</th>
+                    <th scope="col">SMA</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="price : ${prices}"  >
+                    <td th:text="${price.priceUSD}">1</td>
+                    <td th:text="${price.priceBTC}">Vecihi</td>
+                    <td th:text="${price.smaPrice}">Hüruçar</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
+
     </div>
+
+    <!--<div class="container">-->
+        <!--<div class="jumbotron">-->
+            <!--<div class="container">-->
+                <!--<h1 class="display-3">Mutluluğu getiren adam</h1>-->
+                <!--<p>Size mutluluğu getiricem !</p>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
 
     <div th:include="/fragments/theme :: scripts"/>
 
