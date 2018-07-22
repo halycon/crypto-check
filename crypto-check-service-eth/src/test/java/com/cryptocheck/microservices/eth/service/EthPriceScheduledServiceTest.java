@@ -27,7 +27,7 @@ public class EthPriceScheduledServiceTest {
     @Before
     public void init(){
         ethScheduledPriceService = new EthScheduledPriceService();
-        ethScheduledPriceService.neoH2Repository = h2Repository;
+        ethScheduledPriceService.ethH2Repository = h2Repository;
         ethScheduledPriceService.restTemplate = restTemplate;
 
     }
@@ -35,7 +35,7 @@ public class EthPriceScheduledServiceTest {
     @Test
     public void getLatestPriceFromEthApi_NoParam_returnsPrice() throws Exception {
 
-        Price price = ethScheduledPriceService.getLatestPriceFromNeoApi();
+        Price price = ethScheduledPriceService.getLatestPriceFromEthApi();
         Assert.assertNotNull(" price not null ",price);
         Assert.assertTrue(" priceUsd greater than 0 ",price.getPriceUSD().doubleValue()>0);
     }

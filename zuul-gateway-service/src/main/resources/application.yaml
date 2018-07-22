@@ -10,10 +10,10 @@ zuul:
   routes:
     serv1:
       path: /btc/**
-      serviceId: bitcoin-services
+      serviceId: btc-services
     serv2:
       path: /eth/**
-      serviceId: ethereum-services
+      serviceId: eth-services
     serv3:
       path: /neo/**
       serviceId: neo-services
