@@ -22,12 +22,12 @@ public class EthServiceController {
     private IPriceService<PriceResponse,PriceRequest> priceService;
 
     @PostMapping(value = "/getEthPrice", consumes = "application/json", produces = "application/json")
-    public CompletableFuture<PriceResponse> getNeoPrice(@RequestBody PriceRequest request) {
+    public CompletableFuture<PriceResponse> getEthPrice(@RequestBody PriceRequest request) {
         return priceService.fetchPrice(request);
     }
 
     @GetMapping("/getEthServiceStatus")
-    public String getNeoStatus() {
+    public String getEthStatus() {
         return "Eth Services running on port :"+serverPort;
     }
 }
