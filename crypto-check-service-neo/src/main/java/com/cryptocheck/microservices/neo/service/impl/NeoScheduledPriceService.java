@@ -8,7 +8,6 @@ import com.cryptocheck.microservices.neo.service.IScheduledPriceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -21,10 +20,10 @@ public class NeoScheduledPriceService implements IScheduledPriceService {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    private INeoH2Repository neoH2Repository;
+    public INeoH2Repository neoH2Repository;
 
     @Autowired
-    private RestTemplate restTemplate;
+    public RestTemplate restTemplate;
 
     @Override
     @Scheduled(cron = "*/5 * * * * *")
@@ -38,7 +37,7 @@ public class NeoScheduledPriceService implements IScheduledPriceService {
 
     }
 
-    private Price getLatestPriceFromNeoApi() throws Exception{
+    public Price getLatestPriceFromNeoApi() throws Exception{
         String url = "https://min-api.cryptocompare.com/data/price?fsym=NEO&tsyms=BTC,USD";
         ResponseEntity<Coin> responseHttpGet = restTemplate.exchange(url,
                 HttpMethod.GET, null, Coin.class);
