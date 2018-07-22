@@ -1,10 +1,10 @@
-package com.cryptocheck.microservices.neo.service.impl;
+package com.cryptocheck.microservices.eth.service.impl;
 
-import com.cryptocheck.microservices.neo.domain.repository.Price;
-import com.cryptocheck.microservices.neo.domain.service.PriceRequest;
-import com.cryptocheck.microservices.neo.domain.service.PriceResponse;
-import com.cryptocheck.microservices.neo.repository.INeoH2Repository;
-import com.cryptocheck.microservices.neo.service.IPriceService;
+import com.cryptocheck.microservices.eth.domain.repository.Price;
+import com.cryptocheck.microservices.eth.domain.service.PriceRequest;
+import com.cryptocheck.microservices.eth.domain.service.PriceResponse;
+import com.cryptocheck.microservices.eth.repository.IEthH2Repository;
+import com.cryptocheck.microservices.eth.service.IPriceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +18,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
-@Service("NeoPriceService")
-public class NeoPriceService implements IPriceService<PriceResponse, PriceRequest> {
+@Service("EthPriceService")
+public class EthPriceService implements IPriceService<PriceResponse, PriceRequest> {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    public INeoH2Repository h2Repository;
+    public IEthH2Repository h2Repository;
 
     @Override
     public CompletableFuture<PriceResponse> fetchPrice(PriceRequest request) {

@@ -1,6 +1,6 @@
-package com.cryptocheck.microservices.neo.repository;
+package com.cryptocheck.microservices.eth.repository;
 
-import com.cryptocheck.microservices.neo.domain.repository.Price;
+import com.cryptocheck.microservices.eth.domain.repository.Price;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,10 +16,10 @@ import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class NeoH2RepositoryTest {
+public class EthH2RepositoryTest {
 
     @Autowired
-    private INeoH2Repository h2Repository;
+    private IEthH2Repository h2Repository;
 
     @Test
     public void savePrice_RandomPrice_isSuccessful(){
