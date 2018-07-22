@@ -1,8 +1,8 @@
-package com.cryptocheck.microservices.neo.controller;
+package com.cryptocheck.microservices.eth.controller;
 
-import com.cryptocheck.microservices.neo.domain.service.PriceRequest;
-import com.cryptocheck.microservices.neo.domain.service.PriceResponse;
-import com.cryptocheck.microservices.neo.service.IPriceService;
+import com.cryptocheck.microservices.eth.domain.service.PriceRequest;
+import com.cryptocheck.microservices.eth.domain.service.PriceResponse;
+import com.cryptocheck.microservices.eth.service.IPriceService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,21 +13,21 @@ import javax.annotation.Resource;
 import java.util.concurrent.CompletableFuture;
 
 @RestController
-public class NeoServiceController {
+public class EthServiceController {
 
     @Value("${server.port}")
     private String serverPort;
 
-    @Resource(name="NeoPriceService")
+    @Resource(name="EthPriceService")
     private IPriceService<PriceResponse,PriceRequest> priceService;
 
-    @PostMapping(value = "/getNeoPrice", consumes = "application/json", produces = "application/json")
+    @PostMapping(value = "/getEthPrice", consumes = "application/json", produces = "application/json")
     public CompletableFuture<PriceResponse> getNeoPrice(@RequestBody PriceRequest request) {
         return priceService.fetchPrice(request);
     }
 
-    @GetMapping("/getNeoServiceStatus")
+    @GetMapping("/getEthServiceStatus")
     public String getNeoStatus() {
-        return "Neo Services running on port :"+serverPort;
+        return "Eth Services running on port :"+serverPort;
     }
 }

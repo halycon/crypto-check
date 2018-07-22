@@ -1,10 +1,10 @@
-package com.cryptocheck.microservices.neo.controller;
+package com.cryptocheck.microservices.eth.controller;
 
-import com.cryptocheck.microservices.neo.domain.repository.Price;
-import com.cryptocheck.microservices.neo.domain.service.PriceRequest;
-import com.cryptocheck.microservices.neo.domain.service.PriceResponse;
-import com.cryptocheck.microservices.neo.domain.service.SMACriteria;
-import com.cryptocheck.microservices.neo.repository.INeoH2Repository;
+import com.cryptocheck.microservices.eth.domain.repository.Price;
+import com.cryptocheck.microservices.eth.domain.service.PriceRequest;
+import com.cryptocheck.microservices.eth.domain.service.PriceResponse;
+import com.cryptocheck.microservices.eth.domain.service.SMACriteria;
+import com.cryptocheck.microservices.eth.repository.IEthH2Repository;
 import org.hamcrest.Matchers;
 import org.junit.Assert;
 import org.junit.Before;
@@ -27,7 +27,7 @@ import java.math.BigDecimal;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @EnableWebMvc
-public class NeoServiceControllerTest {
+public class EthServiceControllerTest {
 
     private MockMvc mockMvc;
 
@@ -35,11 +35,11 @@ public class NeoServiceControllerTest {
     private TestRestTemplate testRestTemplate;
 
     @Autowired
-    public INeoH2Repository h2Repository;
+    public IEthH2Repository h2Repository;
 
     @Before
     public void init() {
-        mockMvc = MockMvcBuilders.standaloneSetup(NeoServiceController.class).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(EthServiceController.class).build();
         Price priceRandom1 = new Price();
         priceRandom1.setPriceBTC(BigDecimal.valueOf(10000));
         priceRandom1.setPriceUSD(BigDecimal.valueOf(20000));
@@ -47,10 +47,10 @@ public class NeoServiceControllerTest {
     }
 
     @Test
-    public void getNeoPrice_NoParam_returnsPriceResponse() throws Exception {
+    public void getEthPrice_NoParam_returnsPriceResponse() throws Exception {
 
         MvcResult result = mockMvc
-                .perform(MockMvcRequestBuilders.post("/getNeoPrice")
+                .perform(MockMvcRequestBuilders.post("/getEthPrice")
                         .contentType(MediaType.APPLICATION_JSON_UTF8).accept(MediaType.APPLICATION_JSON_UTF8))
                 .andReturn();
 
@@ -64,7 +64,7 @@ public class NeoServiceControllerTest {
     }
 
     @Test
-    public void getNeoPrice_WithSmaCriterias_returnsPriceResponse() {
+    public void getEthPrice_WithSmaCriterias_returnsPriceResponse() {
 
         PriceRequest request = new PriceRequest();
         request.setSmaCriteria(new SMACriteria(1,1));
@@ -72,7 +72,7 @@ public class NeoServiceControllerTest {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Content-Type", "application/json");
 
-        ResponseEntity<PriceResponse> response = testRestTemplate.postForEntity("/getNeoPrice",new HttpEntity<>(request, headers),
+        ResponseEntity<PriceResponse> response = testRestTemplate.postForEntity("/getEthPrice",new HttpEntity<>(request, headers),
                 PriceResponse.class);
 
         Assert.assertEquals(HttpStatus.OK,response.getStatusCode());

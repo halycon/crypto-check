@@ -1,10 +1,10 @@
-package com.cryptocheck.microservices.neo.service.impl;
+package com.cryptocheck.microservices.eth.service.impl;
 
-import com.cryptocheck.microservices.neo.domain.repository.Coin;
-import com.cryptocheck.microservices.neo.domain.repository.Price;
-import com.cryptocheck.microservices.neo.repository.INeoH2Repository;
-import com.cryptocheck.microservices.neo.service.ICallBack;
-import com.cryptocheck.microservices.neo.service.IScheduledPriceService;
+import com.cryptocheck.microservices.eth.domain.repository.Coin;
+import com.cryptocheck.microservices.eth.domain.repository.Price;
+import com.cryptocheck.microservices.eth.repository.IEthH2Repository;
+import com.cryptocheck.microservices.eth.service.ICallBack;
+import com.cryptocheck.microservices.eth.service.IScheduledPriceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +14,13 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-@Service("NeoScheduledPriceService")
-public class NeoScheduledPriceService implements IScheduledPriceService {
+@Service("EthScheduledPriceService")
+public class EthScheduledPriceService implements IScheduledPriceService {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    public INeoH2Repository neoH2Repository;
+    public IEthH2Repository neoH2Repository;
 
     @Autowired
     public RestTemplate restTemplate;
@@ -38,16 +38,16 @@ public class NeoScheduledPriceService implements IScheduledPriceService {
     }
 
     public Price getLatestPriceFromNeoApi() throws Exception{
-        String url = "https://min-api.cryptocompare.com/data/price?fsym=NEO&tsyms=BTC,USD";
+        String url = "https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=BTC,USD";
         ResponseEntity<Coin> responseHttpGet = restTemplate.exchange(url,
                 HttpMethod.GET, null, Coin.class);
 
         if(responseHttpGet.getStatusCodeValue()!=200)
-            throw new Exception("getLatestPriceFromNeoApi http response code :: "+
+            throw new Exception("getLatestPriceFromEthApi http response code :: "+
                     responseHttpGet.getStatusCode().getReasonPhrase());
 
         if(responseHttpGet.getBody()==null)
-            throw new Exception("getLatestPriceFromNeoApi body null ");
+            throw new Exception("getLatestPriceFromEthApi body null ");
         Price price = new Price();
         price.setPriceBTC(responseHttpGet.getBody().getBtc());
         price.setPriceUSD(responseHttpGet.getBody().getUsd());
