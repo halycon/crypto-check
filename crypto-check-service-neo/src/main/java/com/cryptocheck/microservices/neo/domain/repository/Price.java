@@ -17,10 +17,10 @@ public class Price implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private BigInteger id;
 
-    @Column(name = "priceUSD" , scale = 10)
+    @Column(name = "priceUSD" , columnDefinition="Decimal")
     private BigDecimal priceUSD;
 
-    @Column(name = "priceBTC" , scale = 10)
+    @Column(name = "priceBTC" , columnDefinition="Decimal")
     private BigDecimal priceBTC;
 
     @Temporal(TemporalType.TIMESTAMP)
